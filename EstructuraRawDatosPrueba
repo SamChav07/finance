@@ -1,0 +1,67 @@
+**POST**
+/api/usuario
+
+{
+  "nombre": "Samuel Pérez",
+  "email": "samuel@example.com",
+  "frecuenciaIngreso": "MENSUAL",
+  "montoIngreso": 2500
+}
+
+/api/ingreso
+
+{
+  "concepto": "Sueldo junio",
+  "fecha": "2025-06-01",
+  "monto": 2500,
+  "fuente": "SALARIO",
+  "usuario": {
+    "id": 1
+  }
+}
+
+/api/egreso
+
+{
+  "categoria": "Vivienda",
+  "subcategoria": "Renta",
+  "descripcion": "Pago mensual del apartamento",
+  "fecha": "2025-06-01",
+  "monto": 900,
+  "tipo": "FIJO",
+  "usuario": {
+    "id": 1
+  }
+}
+
+/api/plan-ahorro
+
+{
+  "nombre": "Ahorro vacaciones",
+  "descripcionMeta": "Viaje a la playa en diciembre",
+  "fechaInicio": "2025-06-01",
+  "montoMeta": 1200,
+  "montoAhorrado": 300,
+  "plazoMeses": 6,
+  "usuario": {
+    "id": 1
+  }
+}
+
+/api/resumen-financiero
+
+{
+  "ahorroSugerido": 500,
+  "egresosTotales": 1200,
+  "ingresosTotales": 2500,
+  "saldoDisponible": 1300,
+  "usuario": {
+    "id": 1
+  }
+}
+
+/api/gasto-extra
+
+{
+  "motivo": "Reparación de laptop"
+}

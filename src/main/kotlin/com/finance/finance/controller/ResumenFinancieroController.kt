@@ -1,10 +1,10 @@
 package com.finance.finance.controller
 
-import com.finance.finance.model.Ingreso
+import com.finance.finance.model.ResumenFinanciero
 import com.finance.finance.service.GenericService
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/ingresos")
-class IngresoController(service: GenericService<Ingreso, Long>) : GenericController<Ingreso, Long>(service)
+@RequestMapping("/api/resumenes")
+class ResumenFinancieroController(service: GenericService<ResumenFinanciero, Long>) : GenericController<ResumenFinanciero, Long>(service)

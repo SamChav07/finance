@@ -15,13 +15,13 @@ data class Usuario(
     var montoIngreso: Int,
 
     @OneToMany(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var ingresos: List<Ingreso> = emptyList(),
+    var ingresos: MutableList<Ingreso> = mutableListOf(),
 
     @OneToMany(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var egresos: List<Egreso> = emptyList(),
+    var egresos: MutableList<Egreso> = mutableListOf(),
 
     @OneToMany(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var planesAhorro: List<PlanAhorro> = emptyList(),
+    var planesAhorro: MutableList<PlanAhorro> = mutableListOf(),
 
     @OneToOne(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
     var resumenFinanciero: ResumenFinanciero? = null
