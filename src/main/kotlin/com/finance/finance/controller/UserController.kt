@@ -1,13 +1,10 @@
 package com.finance.finance.controller
 
-import com.finance.finance.model.User
-import com.finance.finance.service.UserService
+import com.finance.finance.model.Usuario
+import com.finance.finance.service.GenericService
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/users")
-class UserController(userService: UserService) :
-    GenericController<User, Long>(userService) {
-
-}
+@RequestMapping("/api/usuarios")
+class UsuarioController(service: GenericService<Usuario, Long>) : GenericController<Usuario, Long>(service)

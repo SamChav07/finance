@@ -1,7 +1,7 @@
 package com.finance.finance.repository
 
-import com.finance.finance.model.User
+import com.finance.finance.model.Usuario
+import org.springframework.stereotype.Repository
 
-interface UserRepository : GenericRepository<User, Long> {
-    fun findByEmail(email: String): User?
-}
+@Repository
+interface UsuarioRepository : GenericRepository<Usuario, Long>

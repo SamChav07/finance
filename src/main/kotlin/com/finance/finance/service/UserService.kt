@@ -1,9 +1,8 @@
 package com.finance.finance.service
 
-import com.finance.finance.model.User
-import com.finance.finance.repository.UserRepository
+import com.finance.finance.repository.UsuarioRepository
 import org.springframework.stereotype.Service
+import com.finance.finance.model.Usuario
 
 @Service
-class UserService(userRepository: UserRepository) :
-        GenericServiceImpl<User, Long>(userRepository) {}
+class UsuarioService(repository: UsuarioRepository) : GenericServiceImpl<Usuario, Long>(repository), GenericService<Usuario, Long>
