@@ -1,4 +1,4 @@
-package com.finance.finance.model
+package com.finance.finance.generics
 
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType

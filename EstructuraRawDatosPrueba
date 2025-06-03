@@ -2,10 +2,17 @@
 /api/usuario
 
 {
-  "nombre": "Samuel Pérez",
-  "email": "samuel@example.com",
-  "frecuenciaIngreso": "MENSUAL",
-  "montoIngreso": 2500
+    "concepto": "Sueldo junio",
+    "fecha": "2025-06-01",
+    "monto": 2500,
+    "fuente": "SALARIO",
+    "usuario": {
+        "id": 1,
+        "nombre": "Samuel Pérez",
+        "email": "samuel@example.com",
+        "frecuenciaIngreso": "MENSUAL",
+        "montoIngreso": 2500
+    }
 }
 
 /api/ingreso
@@ -16,11 +23,15 @@
   "monto": 2500,
   "fuente": "SALARIO",
   "usuario": {
-    "id": 1
-  }
+      "id": 1,
+      "nombre": "Samuel Pérez",
+      "email": "samuel@example.com",
+      "frecuenciaIngreso": "MENSUAL",
+      "montoIngreso": 2500
+   }
 }
 
-/api/egreso
+/api/egresos
 
 {
   "categoria": "Vivienda",
@@ -30,11 +41,15 @@
   "monto": 900,
   "tipo": "FIJO",
   "usuario": {
-    "id": 1
+    "id": 1,
+            "nombre": "Samuel Pérez",
+            "email": "samuel@example.com",
+            "frecuenciaIngreso": "MENSUAL",
+            "montoIngreso": 2500
   }
 }
 
-/api/plan-ahorro
+/api/planes-ahorro
 
 {
   "nombre": "Ahorro vacaciones",
@@ -44,11 +59,15 @@
   "montoAhorrado": 300,
   "plazoMeses": 6,
   "usuario": {
-    "id": 1
+      "id": 1,
+      "nombre": "Samuel Pérez",
+      "email": "samuel@example.com",
+      "frecuenciaIngreso": "MENSUAL",
+      "montoIngreso": 2500
   }
 }
 
-/api/resumen-financiero
+/api/resumenes
 
 {
   "ahorroSugerido": 500,
@@ -56,7 +75,11 @@
   "ingresosTotales": 2500,
   "saldoDisponible": 1300,
   "usuario": {
-    "id": 1
+        "id": 1,
+        "nombre": "Samuel Pérez",
+        "email": "samuel@example.com",
+        "frecuenciaIngreso": "MENSUAL",
+        "montoIngreso": 2500
   }
 }
 

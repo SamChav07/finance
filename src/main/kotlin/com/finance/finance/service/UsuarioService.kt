@@ -1,5 +1,7 @@
 package com.finance.finance.service
 
+import com.finance.finance.generics.GenericService
+import com.finance.finance.generics.GenericServiceImpl
 import com.finance.finance.model.PlanAhorro
 import com.finance.finance.model.Usuario
 import com.finance.finance.repository.UsuarioRepository

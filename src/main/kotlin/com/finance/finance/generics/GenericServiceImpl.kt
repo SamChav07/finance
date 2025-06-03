@@ -1,7 +1,5 @@
-package com.finance.finance.service
+package com.finance.finance.generics
 
-import com.finance.finance.model.GenericEntity
-import com.finance.finance.repository.GenericRepository
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.transaction.annotation.Transactional
 

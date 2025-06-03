@@ -1,6 +1,4 @@
-package com.finance.finance.service
-
-import com.finance.finance.model.GenericEntity
+package com.finance.finance.generics
 
 interface GenericService<T : GenericEntity, ID : Any> {
     fun findAll(): List<T>

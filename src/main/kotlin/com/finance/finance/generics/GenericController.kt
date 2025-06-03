@@ -1,7 +1,5 @@
-package com.finance.finance.controller
+package com.finance.finance.generics
 
-import com.finance.finance.model.GenericEntity
-import com.finance.finance.service.GenericService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.DeleteMapping

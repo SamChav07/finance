@@ -1,5 +1,6 @@
 package com.finance.finance.model
 
+import com.finance.finance.generics.GenericEntity
 import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.OneToMany
