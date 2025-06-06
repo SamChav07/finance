@@ -34,7 +34,7 @@ class ResumenFinancieroMapper(
             ingresosTotales = entity.ingresosTotales,
             saldoDisponible = entity.saldoDisponible,
             usuario = UsuarioResponseDTO(
-                id = entity.usuario.id,
+                id = entity.usuario.id!!,
                 nombre = entity.usuario.nombre,
                 email = entity.usuario.email,
                 frecuenciaIngreso = entity.usuario.frecuenciaIngreso,

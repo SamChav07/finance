@@ -1,19 +1,21 @@
 package com.finance.finance.service
 
+import com.finance.finance.DTOs.response.UsuarioResponseDTO
 import com.finance.finance.model.PlanAhorro
-import com.finance.finance.model.Usuario
+import com.finance.finance.repository.UsuarioRepository
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 
 @Service
-class PlanificadorFinancieroService {
+class PlanificadorFinancieroService(
+    private val usuarioRepository: UsuarioRepository
+) {
+    fun generarPlanAhorro(usuario: UsuarioResponseDTO?): PlanAhorro {
+        if (usuario == null) throw IllegalArgumentException("Usuario no puede ser null")
 
-    fun generarPlanAhorro(usuario: Usuario?): PlanAhorro? {
-        if (usuario == null) {
-            return null
-        }
+        val usuarioEntidad = usuarioRepository.findById(usuario.id)
+            .orElseThrow { IllegalArgumentException("Usuario no encontrado con id: ${usuario.id}") }
 
-        val porcentajeAhorroSugerido = 0.20
         val montoMeta = usuario.montoIngreso * 6
         val montoAhorrado = 0
         val plazoMeses = 12
@@ -25,24 +27,18 @@ class PlanificadorFinancieroService {
             montoMeta = montoMeta,
             montoAhorrado = montoAhorrado,
             plazoMeses = plazoMeses,
-            usuario = usuario
+            usuario = usuarioEntidad
         )
     }
 
-    fun sugerirDistribucionGastos(usuario: Usuario?): Map<String, Int>? {
-        if (usuario == null) {
-            return null
-        }
+    fun sugerirDistribucionGastos(usuario: UsuarioResponseDTO?): Map<String, Int> {
+        if (usuario == null) throw IllegalArgumentException("Usuario no puede ser null")
 
         val ingreso = usuario.montoIngreso
-        val necesidades = (ingreso * 0.50).toInt()
-        val ahorro = (ingreso * 0.20).toInt()
-        val estiloVida = (ingreso * 0.30).toInt()
-
         return mapOf(
-            "Necesidades básicas" to necesidades,
-            "Ahorro sugerido" to ahorro,
-            "Estilo de vida y ocio" to estiloVida
+            "Necesidades básicas" to (ingreso * 0.50).toInt(),
+            "Ahorro sugerido" to (ingreso * 0.20).toInt(),
+            "Estilo de vida y ocio" to (ingreso * 0.30).toInt()
         )
     }
 }

@@ -16,15 +16,17 @@ class PlanificadorFinancieroController(
 
     @PostMapping("/generar-plan/{usuarioId}")
     fun generarPlan(@PathVariable usuarioId: Long): ResponseEntity<PlanAhorro> {
-        val usuario = usuarioService.findById(usuarioId)  // Usa mod de usuarioService para obtener usuario
-        val plan = planificadorFinanciero.generarPlanAhorro(usuario: Usuario)
+        val usuarioDto = usuarioService.findById(usuarioId)
+        if (usuarioDto == null) return ResponseEntity.notFound().build()
+        val plan = planificadorFinanciero.generarPlanAhorro(usuarioDto)
         return ResponseEntity.ok(plan)
     }
 
     @GetMapping("/sugerencia-gastos/{usuarioId}")
     fun sugerenciaGastos(@PathVariable usuarioId: Long): ResponseEntity<Map<String, Int>> {
-        val usuario = usuarioService.findById(usuarioId)
-        val sugerencias = planificadorFinanciero.sugerirDistribucionGastos(usuario: Usuario)
+        val usuarioDto = usuarioService.findById(usuarioId)
+        if (usuarioDto == null) return ResponseEntity.notFound().build()
+        val sugerencias = planificadorFinanciero.sugerirDistribucionGastos(usuarioDto)
         return ResponseEntity.ok(sugerencias)
     }
 }

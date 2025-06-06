@@ -32,7 +32,7 @@ class IngresoMapper(
             monto = entity.monto,
             fuente = entity.fuente,
             usuario = UsuarioResponseDTO(
-                id = entity.usuario.id,
+                id = entity.usuario.id!!,
                 nombre = entity.usuario.nombre,
                 email = entity.usuario.email,
                 frecuenciaIngreso = entity.usuario.frecuenciaIngreso,

@@ -37,7 +37,7 @@ class PlanAhorroMapper(
             montoAhorrado = entity.montoAhorrado,
             plazoMeses = entity.plazoMeses,
             usuario = UsuarioResponseDTO(
-                id = entity.usuario.id,
+                id = entity.usuario.id!!,
                 nombre = entity.usuario.nombre,
                 email = entity.usuario.email,
                 frecuenciaIngreso = entity.usuario.frecuenciaIngreso,
