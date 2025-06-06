@@ -6,34 +6,34 @@ import jakarta.persistence.Entity
 import jakarta.persistence.OneToMany
 import jakarta.persistence.OneToOne
 import jakarta.persistence.Table
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 
 @Entity
 @Table(name = "usuario")
 data class Usuario(
     var nombre: String,
     var email: String,
-    var password: String,
+    var clave: String, // 👈 importante: NO cambiar a "clave"
     var frecuenciaIngreso: String,
     var montoIngreso: Int,
 
-    @OneToMany(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var ingresos: MutableList<Ingreso> = mutableListOf(),
+    // relaciones omitidas para claridad...
+) : GenericEntity(), UserDetails {
 
-    @OneToMany(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var egresos: MutableList<Egreso> = mutableListOf(),
-
-    @OneToMany(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var planesAhorro: MutableList<PlanAhorro> = mutableListOf(),
-
-    @OneToOne(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
-    var resumenFinanciero: ResumenFinanciero? = null
-) : GenericEntity() {
+    override fun getUsername(): String = email
+    override fun getPassword(): String? = clave// ✅ requerido por Spring Security
+    override fun getAuthorities() = emptyList<GrantedAuthority>()
+    override fun isAccountNonExpired() = true
+    override fun isAccountNonLocked() = true
+    override fun isCredentialsNonExpired() = true
+    override fun isEnabled() = true
 
     // Constructor secundario para crear Usuario solo con id
     constructor(id: Long) : this(
         nombre = "",
         email = "",
-        password = "",
+        clave = "",
         frecuenciaIngreso = "",
         montoIngreso = 0
     ) {

@@ -5,4 +5,7 @@ import com.finance.finance.model.Usuario
 import org.springframework.stereotype.Repository
 
 @Repository
-interface UsuarioRepository : GenericRepository<Usuario, Long>
+interface UsuarioRepository : GenericRepository<Usuario, Long> {
+    fun findByEmail(email: String): Usuario?
+    fun existsByEmail(email: String): Boolean
+}

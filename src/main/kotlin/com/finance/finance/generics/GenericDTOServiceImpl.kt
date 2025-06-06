@@ -1,5 +1,7 @@
 package com.finance.finance.generics
 
+import com.finance.finance.exception.NotFoundException
+
 abstract class GenericDTOServiceImpl<
         Entity : GenericEntity,
         ID : Any,
@@ -10,10 +12,6 @@ abstract class GenericDTOServiceImpl<
     protected val mapper: GenericMapper<ReqDTO, ResDTO, Entity>
 ) : GenericDTOService<Entity, ID, ReqDTO, ResDTO> {
 
-    /**
-     * Si necesitas lógica especial (como buscar relaciones),
-     * sobrescribe esto en el servicio concreto.
-     */
     protected open fun toEntity(dto: ReqDTO): Entity {
         return mapper.toEntity(dto)
     }
@@ -31,7 +29,8 @@ abstract class GenericDTOServiceImpl<
 
     override fun findById(id: ID): ResDTO? {
         val entity = repository.findById(id)
-        return entity.map { toResponse(it) }.orElse(null)
+            .orElseThrow { NotFoundException("Elemento con id $id no encontrado") }
+        return mapper.toResponse(entity)
     }
 
     override fun findAll(): List<ResDTO> {
@@ -39,13 +38,18 @@ abstract class GenericDTOServiceImpl<
     }
 
     override fun update(id: ID, dto: ReqDTO): ResDTO? {
-        val existing = repository.findById(id).orElse(null) ?: return null
-        val updatedEntity = updateEntityFromDTO(dto, existing)
-        updatedEntity.id = id as? Long
-        return toResponse(repository.save(updatedEntity))
+        val existing = repository.findById(id)
+            .orElseThrow { NotFoundException("Elemento con id $id no encontrado para actualizar") }
+
+        val updated = mapper.updateEntityFromDTO(dto, existing)
+        val saved = repository.save(updated)
+        return mapper.toResponse(saved)
     }
 
     override fun deleteById(id: ID) {
+        if (!repository.existsById(id)) {
+            throw NotFoundException("Elemento con id $id no encontrado para eliminar")
+        }
         repository.deleteById(id)
     }
 }

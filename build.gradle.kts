@@ -32,10 +32,19 @@ dependencies {
 
 	// ⚙ Spring Boot
 	implementation("org.springframework.boot:spring-boot-starter-web") // Web API
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // JPA y ORM
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa") // JPA y ORM o Bcrypt password encoder
+	implementation("org.springframework.boot:spring-boot-starter") // quien sabe
 	implementation("org.springframework.boot:spring-boot-starter-validation") // Bean Validation
 	implementation("org.springframework.boot:spring-boot-starter-actuator") // Endpoints de monitoreo
 	developmentOnly("org.springframework.boot:spring-boot-devtools") // Recarga automática en desarrollo
+	// Spring Security
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	// JWT (io.jsonwebtoken)
+	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+	implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+	implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+	implementation("jakarta.servlet:jakarta.servlet-api:6.0.0") // filtro JWT
+
 
 	// 🧠 Kotlin
 	implementation("org.jetbrains.kotlin:kotlin-reflect") // Reflexión en tiempo de ejecución

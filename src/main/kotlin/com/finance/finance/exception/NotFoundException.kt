@@ -1,6 +1,4 @@
 package com.finance.finance.exception
 
-class NotFoundException(
-    resource: String,
-    id: Any
-) : BusinessException("$resource con ID '$id' no fue encontrado", 404)
+class NotFoundException(message: String) : RuntimeException(message)
+class ConflictException(message: String) : RuntimeException(message)

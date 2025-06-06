@@ -14,7 +14,7 @@ class UsuarioMapper : GenericMapper<UsuarioRequestDTO, UsuarioResponseDTO, Usuar
         email = dto.email,
         frecuenciaIngreso = dto.frecuenciaIngreso,
         montoIngreso = dto.montoIngreso,
-        password = dto.password
+        clave = dto.password
     )
 
     override fun toResponse(entity: Usuario): UsuarioResponseDTO = UsuarioResponseDTO(
@@ -30,7 +30,7 @@ class UsuarioMapper : GenericMapper<UsuarioRequestDTO, UsuarioResponseDTO, Usuar
         entity.email = dto.email
         entity.frecuenciaIngreso = dto.frecuenciaIngreso
         entity.montoIngreso = dto.montoIngreso
-        entity.password = dto.password
+        entity.clave = dto.password
         return entity
     }
 }
