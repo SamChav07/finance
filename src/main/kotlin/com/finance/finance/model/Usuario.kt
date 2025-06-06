@@ -12,6 +12,7 @@ import jakarta.persistence.Table
 data class Usuario(
     var nombre: String,
     var email: String,
+    var password: String,
     var frecuenciaIngreso: String,
     var montoIngreso: Int,
 
@@ -26,4 +27,16 @@ data class Usuario(
 
     @OneToOne(mappedBy = "usuario", cascade = [CascadeType.ALL], orphanRemoval = true)
     var resumenFinanciero: ResumenFinanciero? = null
-) : GenericEntity()
+) : GenericEntity() {
+
+    // Constructor secundario para crear Usuario solo con id
+    constructor(id: Long) : this(
+        nombre = "",
+        email = "",
+        password = "",
+        frecuenciaIngreso = "",
+        montoIngreso = 0
+    ) {
+        this.id = id
+    }
+}

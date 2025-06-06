@@ -6,11 +6,15 @@ import org.springframework.stereotype.Service
 import java.time.LocalDate
 
 @Service
-class PlanificadorFinanciero {
+class PlanificadorFinancieroService {
 
-    fun generarPlanAhorro(usuario: Usuario): PlanAhorro {
+    fun generarPlanAhorro(usuario: Usuario?): PlanAhorro? {
+        if (usuario == null) {
+            return null
+        }
+
         val porcentajeAhorroSugerido = 0.20
-        val montoMeta = (usuario.montoIngreso * 6)
+        val montoMeta = usuario.montoIngreso * 6
         val montoAhorrado = 0
         val plazoMeses = 12
 
@@ -25,7 +29,11 @@ class PlanificadorFinanciero {
         )
     }
 
-    fun sugerirDistribucionGastos(usuario: Usuario): Map<String, Int> {
+    fun sugerirDistribucionGastos(usuario: Usuario?): Map<String, Int>? {
+        if (usuario == null) {
+            return null
+        }
+
         val ingreso = usuario.montoIngreso
         val necesidades = (ingreso * 0.50).toInt()
         val ahorro = (ingreso * 0.20).toInt()
